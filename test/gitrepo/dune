@@ -1,0 +1,21 @@
+(library
+ (name gitrepo_file_test)
+ (package central-tests)
+ (inline_tests)
+ (flags
+  :standard
+  -w
+  +a-4-40-41-42-44-45-48-66
+  -warn-error
+  +a
+  -open
+  Central_stdlib
+  -open
+  Volgo)
+ (libraries central_stdlib gitrepo_file volgo)
+ (instrumentation
+  (backend bisect_ppx))
+ (lint
+  (pps ppx_js_style -allow-let-operators -check-doc-comments))
+ (preprocess
+  (pps ppx_expect)))

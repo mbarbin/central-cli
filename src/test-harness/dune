@@ -1,0 +1,19 @@
+(library
+ (name central_test_harness)
+ (public_name central.test_harness)
+ (flags
+  :standard
+  -w
+  +a-4-40-41-42-44-45-48-66
+  -warn-error
+  +a
+  -open
+  Central_stdlib
+  -open
+  Volgo)
+ (libraries central_stdlib pp unix volgo)
+ (instrumentation
+  (backend bisect_ppx))
+ (lint
+  (pps ppx_js_style -allow-let-operators -check-doc-comments))
+ (preprocess no_preprocessing))

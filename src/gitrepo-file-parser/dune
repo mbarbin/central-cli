@@ -1,0 +1,26 @@
+(ocamllex lexer)
+
+(menhir
+ (modules parser))
+
+(library
+ (name gitrepo_file_parser)
+ (public_name central.gitrepo_file_parser)
+ (flags
+  :standard
+  -w
+  +a-4-40-41-42-44-45-48-66
+  -warn-error
+  +a
+  -w
+  -70
+  -open
+  Volgo
+  -open
+  Central_stdlib
+  -open
+  Central_parsing_utils)
+ (libraries central_parsing_utils central_stdlib gitrepo_file volgo)
+ (instrumentation
+  (backend bisect_ppx))
+ (preprocess no_preprocessing))

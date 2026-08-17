@@ -1,0 +1,33 @@
+(library
+ (name central_test_helpers)
+ (public_name central.test_helpers)
+ (flags
+  :standard
+  -w
+  +a-4-40-41-42-44-45-48-66
+  -warn-error
+  +a
+  -open
+  Central_stdlib
+  -open
+  Pplumbing_err
+  -open
+  Pplumbing_pp_tty
+  -open
+  Volgo
+  -open
+  Central)
+ (libraries
+  central
+  central_stdlib
+  gitrepo_file
+  pp
+  pplumbing-err
+  pplumbing-pp-tty
+  unix
+  volgo)
+ (instrumentation
+  (backend bisect_ppx))
+ (lint
+  (pps ppx_js_style -allow-let-operators -check-doc-comments))
+ (preprocess no_preprocessing))

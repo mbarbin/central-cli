@@ -1,0 +1,33 @@
+(library
+ (name gitrepo_file_parser_test)
+ (package central-tests)
+ (inline_tests)
+ (flags
+  :standard
+  -w
+  +a-4-40-41-42-44-45-48-66
+  -warn-error
+  +a
+  -open
+  Central_stdlib
+  -open
+  Pplumbing_err
+  -open
+  Volgo
+  -open
+  Central_parsing_utils)
+ (libraries
+  central_parsing_utils
+  central_stdlib
+  file-rewriter
+  fpath
+  gitrepo_file
+  gitrepo_file_parser
+  pplumbing-err
+  volgo)
+ (instrumentation
+  (backend bisect_ppx))
+ (lint
+  (pps ppx_js_style -allow-let-operators -check-doc-comments))
+ (preprocess
+  (pps ppx_expect)))

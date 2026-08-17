@@ -1,0 +1,51 @@
+(library
+ (name central_cli)
+ (public_name central.cli)
+ (flags
+  :standard
+  -w
+  +a-4-40-41-42-44-45-48-66
+  -warn-error
+  +a
+  -open
+  Central_stdlib
+  -open
+  Pplumbing_err
+  -open
+  Pplumbing_log
+  -open
+  Pplumbing_log_cli
+  -open
+  Pplumbing_pp_tty
+  -open
+  Volgo
+  -open
+  Cmdlang
+  -open
+  Central
+  -open
+  Central_parsing_utils)
+ (libraries
+  central
+  central_parsing_utils
+  central_stdlib
+  cmdlang
+  file-rewriter
+  fpath
+  gitrepo_file
+  gitrepo_file_parser
+  pp
+  pplumbing-err
+  pplumbing-log
+  pplumbing-log-cli
+  pplumbing-pp-tty
+  print-table
+  spawn
+  unix
+  volgo
+  volgo-git-unix)
+ (instrumentation
+  (backend bisect_ppx))
+ (lint
+  (pps ppx_js_style -allow-let-operators -check-doc-comments))
+ (preprocess no_preprocessing))

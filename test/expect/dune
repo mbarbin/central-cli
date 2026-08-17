@@ -1,0 +1,108 @@
+(library
+ (name central_test)
+ (package central-tests)
+ (inline_tests
+  (deps central.exe))
+ (flags
+  :standard
+  -w
+  +a-4-40-41-42-44-45-48-66
+  -warn-error
+  +a
+  -open
+  Central_stdlib
+  -open
+  Pplumbing_err
+  -open
+  Volgo
+  -open
+  Central)
+ (libraries
+  central
+  central_stdlib
+  central_test_harness
+  central_test_helpers
+  pplumbing-err
+  volgo
+  volgo-git-unix)
+ (instrumentation
+  (backend bisect_ppx))
+ (lint
+  (pps ppx_js_style -allow-let-operators -check-doc-comments))
+ (preprocess
+  (pps ppx_expect)))
+
+(rule
+ (copy %{bin:central} central.exe))
+
+(rule
+ (target export.md)
+ (alias runtest)
+ (mode promote)
+ (action
+  (with-stdout-to
+   %{target}
+   (run %{bin:mdexp} pp %{dep:export.ml}))))
+
+(rule
+ (target import.md)
+ (alias runtest)
+ (mode promote)
+ (action
+  (with-stdout-to
+   %{target}
+   (run %{bin:mdexp} pp %{dep:import.ml}))))
+
+(rule
+ (target push.md)
+ (alias runtest)
+ (mode promote)
+ (action
+  (with-stdout-to
+   %{target}
+   (run %{bin:mdexp} pp %{dep:push.ml}))))
+
+(rule
+ (target stitch.md)
+ (alias runtest)
+ (mode promote)
+ (action
+  (with-stdout-to
+   %{target}
+   (run %{bin:mdexp} pp %{dep:stitch.ml}))))
+
+(rule
+ (target advance.md)
+ (alias runtest)
+ (mode promote)
+ (action
+  (with-stdout-to
+   %{target}
+   (run %{bin:mdexp} pp %{dep:advance.ml}))))
+
+(rule
+ (target workflow.md)
+ (alias runtest)
+ (mode promote)
+ (action
+  (with-stdout-to
+   %{target}
+   (run %{bin:mdexp} pp %{dep:workflow.ml}))))
+
+(rule
+ (target config.md)
+ (alias runtest)
+ (mode promote)
+ (action
+  (with-stdout-to
+   %{target}
+   (run %{bin:mdexp} pp %{dep:config.ml}))))
+
+(rule
+ (target todo.md)
+ (alias runtest)
+ (mode promote)
+ (action
+  (with-stdout-to
+   %{target}
+   (run %{bin:mdexp} pp %{dep:todo.ml}))))

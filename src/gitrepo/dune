@@ -1,0 +1,19 @@
+(library
+ (name gitrepo_file)
+ (public_name central.gitrepo_file)
+ (flags
+  :standard
+  -w
+  +a-4-40-41-42-44-45-48-66
+  -warn-error
+  +a
+  -open
+  Volgo
+  -open
+  Central_stdlib)
+ (libraries central_stdlib volgo)
+ (instrumentation
+  (backend bisect_ppx))
+ (lint
+  (pps ppx_js_style -allow-let-operators -check-doc-comments))
+ (preprocess no_preprocessing))
