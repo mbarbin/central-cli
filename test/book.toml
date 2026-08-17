@@ -1,0 +1,20 @@
+[book]
+title = "Central Test Suite"
+authors = ["Mathieu Barbin"]
+description = "Literate walkthroughs of central's commands, doubling as regression tests via mdexp"
+language = "en"
+src = "."
+
+[build]
+build-dir = "../doc/static/book/test-suite"
+
+[output.html]
+git-repository-url = "https://github.com/mbarbin/central-cli"
+default-theme = "light"
+preferred-dark-theme = "navy"
+theme = "../doc/book/shared-theme"
+additional-js = ["../doc/book/shared-theme/ansi-plugin.js"]
+
+[output.html.fold]
+enable = true
+level = 0
