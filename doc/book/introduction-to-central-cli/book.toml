@@ -1,0 +1,26 @@
+[book]
+title = "Introduction to central"
+authors = ["Mathieu Barbin"]
+description = "A user-facing tour of the central CLI: what it's for, and how to use it day to day"
+language = "en"
+src = "."
+
+[build]
+build-dir = "../../static/book/introduction-to-central-cli"
+
+# shared-theme/ is a local copy of repo/mdexp/doc/book/shared-theme (its
+# ansi-plugin.js is what turns a ```ansi fenced snapshot into colored HTML).
+# Vendored rather than referenced by a relative path across subrepo
+# boundaries - mdbook re-resolves theme/additional-js paths a second time
+# from the *output* directory, so a "../shared-theme"-style relative path
+# does not survive that.
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "navy"
+git-repository-url = "https://github.com/mbarbin/central-cli"
+theme = "shared-theme"
+additional-js = ["shared-theme/ansi-plugin.js"]
+
+[output.html.fold]
+enable = true
+level = 0

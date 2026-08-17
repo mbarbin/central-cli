@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}{{ config.title }}{% endblock title %}
+
+{% block wrapper_class %} no-sidebar{% endblock wrapper_class %}
+
+{% block content %}
+<section class="hero">
+  <h1>{{ section.title }}</h1>
+  {{ section.content | safe }}
+
+  <div class="sections-grid">
+    <a href="{{ get_url(path="@/tutorials/_index.md") }}" class="section-card">
+      <h3>Tutorials</h3>
+      <p>Learning-oriented guides to get you started.</p>
+    </a>
+    <a href="{{ get_url(path="@/guides/_index.md") }}" class="section-card">
+      <h3>Guides</h3>
+      <p>Problem-oriented directions for specific tasks.</p>
+    </a>
+    <a href="{{ get_url(path="@/reference/_index.md") }}" class="section-card">
+      <h3>Reference</h3>
+      <p>Information-oriented technical descriptions.</p>
+    </a>
+    <a href="{{ get_url(path="@/explanation/_index.md") }}" class="section-card">
+      <h3>Explanation</h3>
+      <p>Understanding-oriented background and context.</p>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Latest Additions</h2>
+  <ul>
+    <li>
+      <a href="book/introduction-to-central-cli/">Introduction to central</a>
+    </li>
+  </ul>
+</section>
+{% endblock content %}

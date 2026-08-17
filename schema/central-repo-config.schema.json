@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/mbarbin/central-cli/releases/download/%%VERSION%%/central-repo-config.schema.json",
+  "title": "Central Repo Config",
+  "description": "Configuration file for a monorepo using central, optionally read from .central/repo-config.json at the root of the repository.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "The JSON schema for this configuration file"
+    },
+    "rootRepoName": {
+      "type": "string",
+      "description": "The name of the monorepo itself, as shown e.g. in `central todo`'s table, and used to resolve `central` as a \"which repos\" selector on the command line.",
+      "default": "central",
+      "examples": ["central"]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/mbarbin/central-cli/releases/download/%%VERSION%%/central-user-config.schema.json",
+  "title": "Central User Config",
+  "description": "Per-user configuration for central, read from the XDG config directory (typically ~/.config/central/user-config.json). Currently empty - fields will be added as the CLI grows.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "The JSON schema for this configuration file"
+    }
+  }
+}
