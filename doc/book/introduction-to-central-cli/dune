@@ -1,5 +1,7 @@
+(data_only_dirs shared-theme)
+
 (library
- (name central_test)
+ (name central_introduction)
  (package central-tests)
  (inline_tests
   (deps central.exe))
@@ -12,8 +14,6 @@
   -open
   Central_stdlib
   -open
-  Pplumbing_err
-  -open
   Volgo
   -open
   Central)
@@ -22,7 +22,6 @@
   central_stdlib
   central_test_harness
   central_test_helpers
-  pplumbing-err
   volgo
   volgo-git-unix)
  (instrumentation
@@ -67,21 +66,6 @@
 
 (rule
  (enabled_if %{bin-available:mdexp})
- (target push.md.gen)
- (deps push.ml)
- (action
-  (with-stdout-to
-   %{target}
-   (run mdexp pp %{deps}))))
-
-(rule
- (enabled_if %{bin-available:mdexp})
- (alias runtest)
- (action
-  (diff push.md push.md.gen)))
-
-(rule
- (enabled_if %{bin-available:mdexp})
  (target stitch.md.gen)
  (deps stitch.ml)
  (action
@@ -97,8 +81,8 @@
 
 (rule
  (enabled_if %{bin-available:mdexp})
- (target advance.md.gen)
- (deps advance.ml)
+ (target push.md.gen)
+ (deps push.ml)
  (action
   (with-stdout-to
    %{target}
@@ -108,49 +92,4 @@
  (enabled_if %{bin-available:mdexp})
  (alias runtest)
  (action
-  (diff advance.md advance.md.gen)))
-
-(rule
- (enabled_if %{bin-available:mdexp})
- (target workflow.md.gen)
- (deps workflow.ml)
- (action
-  (with-stdout-to
-   %{target}
-   (run mdexp pp %{deps}))))
-
-(rule
- (enabled_if %{bin-available:mdexp})
- (alias runtest)
- (action
-  (diff workflow.md workflow.md.gen)))
-
-(rule
- (enabled_if %{bin-available:mdexp})
- (target config.md.gen)
- (deps config.ml)
- (action
-  (with-stdout-to
-   %{target}
-   (run mdexp pp %{deps}))))
-
-(rule
- (enabled_if %{bin-available:mdexp})
- (alias runtest)
- (action
-  (diff config.md config.md.gen)))
-
-(rule
- (enabled_if %{bin-available:mdexp})
- (target todo.md.gen)
- (deps todo.ml)
- (action
-  (with-stdout-to
-   %{target}
-   (run mdexp pp %{deps}))))
-
-(rule
- (enabled_if %{bin-available:mdexp})
- (alias runtest)
- (action
-  (diff todo.md todo.md.gen)))
+  (diff push.md push.md.gen)))
