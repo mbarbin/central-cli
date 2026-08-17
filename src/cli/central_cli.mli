@@ -11,8 +11,8 @@ val main : unit Command.t
     tools built on top of the same conventions (a monorepo with subrepos
     vendored under [repo/<name>/]) can embed these commands directly,
     without going through command-line parsing or a subprocess. *)
-module Cmd__advance_main = Cmd__advance_main
 
+module Cmd__advance_main = Cmd__advance_main
 module Cmd__advance_subrepo = Cmd__advance_subrepo
 module Cmd__export = Cmd__export
 module Cmd__import = Cmd__import
