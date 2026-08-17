@@ -1,0 +1,13 @@
+{
+    "note": "This directory vendors the unified-diff renderer and the Equal/Line/compute API shape from windtrap. The Myers shortest-edit-script computation it calls into lives in ../merge3, vendored separately from gazagnaire/ocaml-merge3. See the in-file Notice block for the list of changes.",
+    "sources": [
+        {
+            "file": "myers.ml",
+            "description": "Unified-diff renderer and Equal/Line/compute API shape",
+            "url": "https://github.com/invariant-hq/windtrap.git",
+            "gitRev": "5a6d0e2f470047306435a7d46e443d6eadb07be2",
+            "path": "lib/myers/myers.ml",
+            "license": "ISC"
+        }
+    ]
+}
