@@ -76,6 +76,10 @@
    (>= 5.3))
   (central
    (= :version))
+  (file-rewriter
+   (>= 0.0.3))
+  (fpath
+   (>= 0.7.3))
   (mdexp
    (>= 0.0.20260814))
   (pplumbing-err
