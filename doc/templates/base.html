@@ -34,6 +34,11 @@
           <a href="{{ get_url(path="@/resources/_index.md") }}">Resources</a>
           <a href="{{ config.extra.github_url }}">GitHub</a>
         </div>
+        <a class="nav-search" href="{{ get_url(path="@/search/_index.md") }}" aria-label="Search the docs">
+          <svg class="nav-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search</span>
+          <kbd class="nav-search-kbd">Ctrl K</kbd>
+        </a>
       </nav>
       <hr>
     </header>
@@ -49,6 +54,20 @@
     </footer>
     <script>
       (function() {
+        // Ctrl+K / Cmd+K: jump to search. If we're already on the search
+        // page, focus its input instead of reloading it.
+        document.addEventListener('keydown', function(e) {
+          if (e.key !== 'k' && e.key !== 'K') return;
+          if (!e.ctrlKey && !e.metaKey) return;
+          e.preventDefault();
+          var pageInput = document.getElementById('search-input');
+          if (pageInput) {
+            pageInput.focus();
+          } else {
+            window.location.href = '{{ get_url(path="@/search/_index.md") }}';
+          }
+        });
+
         // Header: hide on scroll down, show on scroll up
         var header = document.querySelector('header');
         var lastY = window.scrollY;
