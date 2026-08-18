@@ -37,14 +37,17 @@ let resolve_in_path ~prog =
 let ensure_clean_working_tree ~vcs ~repo_root =
   let status =
     Vcs.git vcs ~repo_root ~args:[ "status"; "--porcelain" ] ~f:Vcs.Git.exit0_and_stdout
+    |> String.strip
   in
-  if not (String.equal (String.strip status) "")
+  if not (String.equal status "")
   then
     Err.raise
       Pp.O.
-        [ Pp.text "Repo "
-          ++ Pp_tty.path (module String) (Vcs.Repo_root.to_string repo_root)
-          ++ Pp.text " has uncommitted changes - commit or stash them first."
+        [ Pp.hbox
+            (Pp.text "Repo "
+             ++ Pp_tty.path (module String) (Vcs.Repo_root.to_string repo_root)
+             ++ Pp.text " has uncommitted changes.")
+        ; Pp.verbatim status
         ]
-      ~hints:[ Pp.verbatim (String.strip status) ]
+      ~hints:[ Pp.text "Commit or stash them first." ]
 ;;

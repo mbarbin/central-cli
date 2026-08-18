@@ -229,9 +229,9 @@ let%expect_test "dirty working tree" =
     {|
     $ central export widget -m "Should not apply"
     ==================== widget ====================
-    Error: Repo "$CENTRAL_ROOT" has uncommitted changes -
-    commit or stash them first.
-    Hint: M repo/widget/README.md
+    Error: Repo "$CENTRAL_ROOT" has uncommitted changes.
+    M repo/widget/README.md
+    Hint: Commit or stash them first.
     [123]
     |}]
 ;;

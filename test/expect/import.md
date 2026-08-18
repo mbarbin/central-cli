@@ -76,9 +76,9 @@ tree is clean - an unstaged edit is rejected outright:
 
 ```ansi
 $ central import widget
-Error: Repo "$CENTRAL_ROOT" has uncommitted changes -
-commit or stash them first.
-Hint: M README.md
+Error: Repo "$CENTRAL_ROOT" has uncommitted changes.
+M README.md
+Hint: Commit or stash them first.
 [123]
 ```
 
