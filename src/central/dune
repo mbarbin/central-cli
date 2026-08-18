@@ -1,6 +1,6 @@
 (library
- (package central)
  (name central)
+ (public_name central)
  (flags
   :standard
   -w
