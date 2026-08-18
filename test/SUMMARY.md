@@ -10,3 +10,4 @@
 - [Advance Main, Advance Subrepo](expect/advance.md)
 - [Todo](expect/todo.md)
 - [Config](expect/config.md)
+- [Deterministic Revisions](expect/redact.md)

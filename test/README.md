@@ -9,10 +9,9 @@ drift from what actually happens when the code runs.
 ## Layout
 
 - `expect/` holds every test file, both the literate, book-generating ones
-  (`workflow.ml`, `export.ml`, `import.ml`, `stitch.ml`, `push.ml`,
-  `advance.ml`, `todo.ml`, `config.ml` - each carrying `@mdexp` directives
-  and a generated `.md` counterpart, checked in next to the `.ml`) and the
-  plain ones (`test__central.ml`).
+  (each carrying `@mdexp` directives and a generated `.md` counterpart,
+  checked in next to the `.ml` - see `SUMMARY.md` for the current list of
+  pages) and the plain ones (`test__central.ml`).
 - `gitrepo/` and `gitrepo-file-parser/` test the `.gitrepo` file parser in
   isolation.
 

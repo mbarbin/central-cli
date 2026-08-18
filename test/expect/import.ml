@@ -323,7 +323,8 @@ let%expect_test "conflict" =
      Central is left in the middle of the merge, exactly as an ordinary
      `git merge` would - conflict markers included, with the trailing
      revision on `>>>>>>>` naming the import commit, the side being merged
-     in: *)
+     in. That revision is a deterministic mock rather than the real sha -
+     see [Deterministic Revisions](redact.md) for why: *)
   let merge_head =
     Vcs.git
       vcs
