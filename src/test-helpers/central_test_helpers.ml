@@ -4,6 +4,23 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
+(* Every git invocation the test suite makes - both the ones issued directly
+   from this process and the ones the spawned [central] subprocess makes on
+   its own (see [Central_test_harness.run]; it inherits this process's
+   environment) - is pointed away from the ambient global/system git config.
+   Without this, [init_repo] below only isolates identity (user.name/email);
+   anything else set globally on the machine running the tests still applies
+   to these throwaway repos, e.g. commit/tag signing (which can block on a
+   hardware key or a gpg-agent prompt) or a global [core.hooksPath] running
+   pre-commit/pre-push hooks. Either can turn an otherwise-fast test suite
+   into one that hangs or crawls, for reasons that have nothing to do with
+   [central] itself and everything to do with the developer's own [~/.gitconfig].
+   [/dev/null] is git's documented way to say "load no file here". *)
+let () =
+  Unix.putenv "GIT_CONFIG_GLOBAL" "/dev/null";
+  Unix.putenv "GIT_CONFIG_SYSTEM" "/dev/null"
+;;
+
 module Fake_subrepo = struct
   type t =
     { subrepo : Central.Subrepo.t
