@@ -61,6 +61,17 @@ let replace_all text ~pattern ~with_ =
     Buffer.contents buf)
 ;;
 
+let repo_root_placeholder = "$CENTRAL_ROOT"
+
+(* Read by [Common_helpers.repo_root_for_display] in the spawned [central]
+   subprocess, so it can print [repo_root_placeholder] directly instead of
+   the real, platform-dependent absolute path. This keeps messages that
+   embed [repo_root] from word-wrapping differently depending on the length
+   of the real path (e.g. macOS's much longer [$TMPDIR]) - see there for
+   details - rather than relying solely on the raw-text substitution
+   [redact] does below after the fact. *)
+let repo_root_env_var_for_test = "CENTRAL_TEST_REPO_ROOT"
+
 type t =
   { mock_revs : Vcs.Mock_revs.t
   ; repo_root : string * string (* (absolute path, "$CENTRAL_ROOT") *)
@@ -68,8 +79,9 @@ type t =
   }
 
 let create ~repo_root =
+  Unix.putenv repo_root_env_var_for_test repo_root_placeholder;
   { mock_revs = Vcs.Mock_revs.create ()
-  ; repo_root = Vcs.Repo_root.to_string repo_root, "$CENTRAL_ROOT"
+  ; repo_root = Vcs.Repo_root.to_string repo_root, repo_root_placeholder
   ; registered_revs = []
   }
 ;;
