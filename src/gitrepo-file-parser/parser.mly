@@ -23,6 +23,16 @@
 
 %type <Gitrepo_file.t> file
 
+/* The 3 annotations below make every nonterminal's type explicit so that
+   Menhir doesn't need Dune's [--infer] step (disabled in the [dune] file
+   next to this one). See the comment there and
+   https://github.com/ocaml/dune/issues/15642 for why: this, and the
+   [(infer false)] in [dune], should be reverted once that issue is fixed
+   upstream and released. */
+%type <Config_field.t> field
+%type <Config_field.t list> nonempty_list(field)
+%type <string list> list(COMMENT)
+
 %start file
 
 %%

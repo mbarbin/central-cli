@@ -1,7 +1,20 @@
 (ocamllex lexer)
 
+; [infer false] disables Menhir/Dune's [--infer] step, which would otherwise
+; shell out to [ocamlc -i] on a generated mock module to derive [parser.mli].
+; That step is broken by Dune's package-managed macOS relocatable compiler
+; (as of dune 3.24.1+ for OCaml >= 5.5): the compiler can't locate its own
+; [Stdlib] when invoked through the build sandbox, and fails with "Unbound
+; module Stdlib". See https://github.com/ocaml/dune/issues/15642 (fix
+; drafted in https://github.com/ocaml/dune/pull/15679, not yet merged).
+;
+; TODO: once that's fixed upstream and released, revert this and the
+; accompanying [%type] annotations in [parser.mly] added for the same
+; reason.
+
 (menhir
- (modules parser))
+ (modules parser)
+ (infer false))
 
 (library
  (name gitrepo_file_parser)
