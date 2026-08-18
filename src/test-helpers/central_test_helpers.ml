@@ -102,7 +102,15 @@ let fake_readme_contents subrepo =
     (Central.Subrepo.to_string subrepo)
 ;;
 
-let temp_dir prefix = Filename.temp_dir prefix "" |> Absolute_path.v
+(* [Filename.temp_dir] honors [$TMPDIR], which on macOS is itself a symlink
+   (e.g. into [/var/folders/...], with [/var] a symlink to [/private/var]).
+   [Unix.realpath] resolves that once, up front, so that this directory's
+   path already matches what [Unix.getcwd ()] reports once something [chdir]
+   s into it and calls back into it - macOS's [getcwd] returns the fully
+   resolved path, so without this the same directory would print under two
+   different-looking absolute paths depending on which of the two functions
+   produced the string. *)
+let temp_dir prefix = Filename.temp_dir prefix "" |> Unix.realpath |> Absolute_path.v
 
 (* This takes care of setting the user config with dummy values, so that
    [Vcs.commit] can be used without depending on the ambient user config -
