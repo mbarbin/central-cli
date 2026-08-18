@@ -270,40 +270,29 @@ header {
 .hero {
   text-align: center;
   padding: 2rem 0;
+
+  // The "# " markdown-style prefix reads fine on left-aligned article
+  // headings, but centering it along with the title text throws the
+  // title itself off-center. Drop it for the masthead only.
+  h1:before {
+    content: none;
+  }
 }
 
-.sections-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin: 2rem 0;
-  text-align: left;
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0 3rem;
 
-  .section-card {
-    padding: 1rem 1.5rem;
-    border: 1px solid var(--cyan-color);
-    border-radius: 6px;
-    display: block;
-    text-decoration: none;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.05);
-      text-decoration: none;
-    }
-
-    h3 {
-      margin: 0 0 0.3rem 0;
-      color: var(--blue-color);
-    }
-
-    h3:before { content: none; }
-
-    p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--comment-color);
-    }
+  img {
+    vertical-align: middle;
   }
+}
+
+.intro {
+  text-align: left;
 }
 
 // Article content
@@ -374,9 +363,5 @@ footer {
       margin-right: 0;
       margin-left: 0;
     }
-  }
-
-  .sections-grid {
-    grid-template-columns: 1fr;
   }
 }

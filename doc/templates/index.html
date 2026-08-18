@@ -7,25 +7,14 @@
 {% block content %}
 <section class="hero">
   <h1>{{ section.title }}</h1>
-  {{ section.content | safe }}
 
-  <div class="sections-grid">
-    <a href="{{ get_url(path="@/tutorials/_index.md") }}" class="section-card">
-      <h3>Tutorials</h3>
-      <p>Learning-oriented guides to get you started.</p>
-    </a>
-    <a href="{{ get_url(path="@/guides/_index.md") }}" class="section-card">
-      <h3>Guides</h3>
-      <p>Problem-oriented directions for specific tasks.</p>
-    </a>
-    <a href="{{ get_url(path="@/reference/_index.md") }}" class="section-card">
-      <h3>Reference</h3>
-      <p>Information-oriented technical descriptions.</p>
-    </a>
-    <a href="{{ get_url(path="@/explanation/_index.md") }}" class="section-card">
-      <h3>Explanation</h3>
-      <p>Understanding-oriented background and context.</p>
-    </a>
+  <p class="badges">
+    <a href="https://github.com/mbarbin/central-cli/actions/workflows/ci.yml"><img src="https://github.com/mbarbin/central-cli/workflows/ci/badge.svg" alt="CI Status"></a>
+    <a href="https://github.com/mbarbin/central-cli/actions/workflows/deploy-doc.yml"><img src="https://github.com/mbarbin/central-cli/workflows/deploy-doc/badge.svg" alt="Deploy Doc Status"></a>
+  </p>
+
+  <div class="intro">
+    {{ section.content | safe }}
   </div>
 </section>
 
