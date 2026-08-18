@@ -41,6 +41,7 @@
 include Stdlib.StringLabels
 
 let to_string t = t
+let is_empty t = length t = 0
 
 let prefix t len =
   let len = if len < 0 then 0 else if len > length t then length t else len in

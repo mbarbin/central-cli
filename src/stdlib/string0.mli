@@ -10,6 +10,8 @@ include module type of Stdlib.StringLabels
     [Stringable]-like interface is expected (e.g. [Pp_tty.kwd]). *)
 val to_string : t -> t
 
+val is_empty : t -> bool
+
 (** [prefix t len] returns the first [len] characters of [t], clamped to
     [t]'s own length if [len] exceeds it (or to [""] if [len] is
     negative). *)
