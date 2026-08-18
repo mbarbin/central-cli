@@ -39,16 +39,30 @@
   {% if page.date %}
   <p class="meta">
     <time datetime="{{ page.date | date(format="%Y-%m-%d") }}">{{ page.date | date(format="%B %d, %Y") }}</time>
-    {% if page.extra.author %} — {{ page.extra.author }}{% endif %}
   </p>
   {% endif %}
+  {% if page.extra.author %}
+  {% set authors = load_data(path="data/authors.toml") %}
+  {% set author = authors[page.extra.author] %}
+  {% if author %}
+  <div class="post-author">
+    <a href="{{ author.url }}" class="avatar-photo-link">
+      <img src="https://github.com/{{ author.github }}.png" alt="{{ author.name }}" class="avatar-photo">
+    </a>
+    <div class="post-author-intro">
+      <a href="{{ author.url }}" class="post-author-name">{{ author.name }}</a>
+      {% if author.title %}<small class="post-author-title">{{ author.title }}</small>{% endif %}
+    </div>
+  </div>
+  {% endif %}
+  {% endif %}
+  {{ page.content | safe }}
   {% if page.taxonomies.tags %}
   <p class="tags">
     {% for tag in page.taxonomies.tags %}
-    <a href="{{ get_taxonomy_url(kind="tags", name=tag) }}">#{{ tag }}</a>{% if not loop.last %} {% endif %}
+    <a href="{{ get_taxonomy_url(kind="tags", name=tag) }}">#{{ tag }}</a>
     {% endfor %}
   </p>
   {% endif %}
-  {{ page.content | safe }}
 </article>
 {% endblock content %}

@@ -58,6 +58,35 @@ h2 { font-size: 1.5rem; }
 h3 { font-size: 1.25rem; }
 h4 { font-size: 1rem; }
 
+// Per-heading permalink, hidden until the heading is hovered — lets readers
+// grab a direct link to a section (see templates/anchor-link.html).
+.heading-anchor {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.5em;
+  color: var(--comment-color);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+
+  svg {
+    display: block;
+  }
+}
+
+h1:hover .heading-anchor,
+h2:hover .heading-anchor,
+h3:hover .heading-anchor,
+h4:hover .heading-anchor,
+h5:hover .heading-anchor,
+h6:hover .heading-anchor {
+  opacity: 1;
+}
+
+.heading-anchor:hover {
+  color: var(--orange-color);
+}
+
 code {
   padding: 0.1em 0.4em;
   border-radius: 3px;
@@ -177,6 +206,45 @@ header {
     margin-right: auto;
     margin-left: 2rem;
   }
+
+  // A button, not a real input: it just links to the /search page (Ctrl+K
+  // does the same, and focuses the page's own search box once there).
+  .nav-search {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-left: 1.5rem;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.85rem;
+    color: var(--comment-color);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--comment-color);
+    border-radius: 999px;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--orange-color);
+      border-color: var(--orange-color);
+    }
+
+    &-icon {
+      flex-shrink: 0;
+    }
+
+    span {
+      flex: 1;
+    }
+
+    &-kbd {
+      flex-shrink: 0;
+      padding: 0.05rem 0.35rem;
+      font-size: 0.7rem;
+      font-family: inherit;
+      color: var(--comment-color);
+      border: 1px solid var(--comment-color);
+      border-radius: 3px;
+    }
+  }
 }
 
 // Two-column page wrapper: sidebar + content
@@ -270,40 +338,29 @@ header {
 .hero {
   text-align: center;
   padding: 2rem 0;
+
+  // The "# " markdown-style prefix reads fine on left-aligned article
+  // headings, but centering it along with the title text throws the
+  // title itself off-center. Drop it for the masthead only.
+  h1:before {
+    content: none;
+  }
 }
 
-.sections-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin: 2rem 0;
-  text-align: left;
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0 3rem;
 
-  .section-card {
-    padding: 1rem 1.5rem;
-    border: 1px solid var(--cyan-color);
-    border-radius: 6px;
-    display: block;
-    text-decoration: none;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.05);
-      text-decoration: none;
-    }
-
-    h3 {
-      margin: 0 0 0.3rem 0;
-      color: var(--blue-color);
-    }
-
-    h3:before { content: none; }
-
-    p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--comment-color);
-    }
+  img {
+    vertical-align: middle;
   }
+}
+
+.intro {
+  text-align: left;
 }
 
 // Article content
@@ -322,16 +379,173 @@ article {
   color: var(--comment-color);
 }
 
-.tags a {
-  color: var(--green-color);
+// Author byline (blog post and blog list): a plain circular photo beside a
+// bold name and a muted title underneath, sized close to the ~3.6rem photo
+// used by the original Docusaurus blog theme.
+.post-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.75rem 0 1rem;
+
+  .avatar-photo {
+    display: block;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    border: none;
+  }
+
+  &-intro {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fg-color);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--orange-color);
+    }
+  }
+
+  &-title {
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    color: var(--comment-color);
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+
+  a {
+    padding: 0.15rem 0.6rem;
+    border: 1px solid var(--green-color);
+    border-radius: 999px;
+    color: var(--green-color);
+    font-size: 0.85rem;
+    text-decoration: none;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
 }
 
 ul.blog {
   list-style: none;
   padding-left: 0;
+
+  li {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--cyan-color);
+
+    &:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+  }
+
+  h2 {
+    margin-bottom: 0.5rem;
+
+    // Swap the usual "## " markdown-style prefix for a plain bullet, so
+    // each post reads as an item in a list rather than a page heading.
+    // Colored to match the title link right after it, not the generic
+    // heading prefix color.
+    &:before {
+      content: '• ';
+      color: var(--orange-color);
+    }
+  }
+
+  .excerpt {
+    margin: 1rem 0;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    // A post's excerpt can start with its first in-content heading (e.g.
+    // "## Introduction"). Demote it to plain text so it doesn't duplicate
+    // the list item's own <h2> title right above it.
+    h1, h2, h3, h4 {
+      font-size: 1rem;
+      color: var(--fg-color);
+      margin-bottom: 0.5rem;
+
+      &:before {
+        content: none;
+      }
+    }
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    .tags {
+      margin-top: 0;
+    }
+  }
+
+  .read-more {
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
 }
 
-footer {
+// Search page
+.search-box {
+  margin: 1.5rem 0;
+
+  input {
+    width: 100%;
+    max-width: 480px;
+    padding: 0.5rem 0.75rem;
+    font: inherit;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--fg-color);
+    border: 1px solid var(--cyan-color);
+    border-radius: 5px;
+
+    &:focus {
+      outline: none;
+      border-color: var(--orange-color);
+    }
+  }
+}
+
+.search-results {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    margin-bottom: 1.5rem;
+  }
+
+  a {
+    font-weight: bold;
+  }
+
+  .meta {
+    margin-top: 0.2rem;
+  }
+}
+
+.site-footer {
   text-align: center;
   padding: 2rem 1.5rem;
   font-size: 0.85rem;
@@ -374,9 +588,5 @@ footer {
       margin-right: 0;
       margin-left: 0;
     }
-  }
-
-  .sections-grid {
-    grid-template-columns: 1fr;
   }
 }
