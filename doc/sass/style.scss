@@ -379,13 +379,132 @@ article {
   color: var(--comment-color);
 }
 
-.tags a {
-  color: var(--green-color);
+// Author byline (blog post and blog list): a plain circular photo beside a
+// bold name and a muted title underneath, sized close to the ~3.6rem photo
+// used by the original Docusaurus blog theme.
+.post-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.75rem 0 1rem;
+
+  .avatar-photo {
+    display: block;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    border: none;
+  }
+
+  &-intro {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fg-color);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--orange-color);
+    }
+  }
+
+  &-title {
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    color: var(--comment-color);
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+
+  a {
+    padding: 0.15rem 0.6rem;
+    border: 1px solid var(--green-color);
+    border-radius: 999px;
+    color: var(--green-color);
+    font-size: 0.85rem;
+    text-decoration: none;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
 }
 
 ul.blog {
   list-style: none;
   padding-left: 0;
+
+  li {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--cyan-color);
+
+    &:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+  }
+
+  h2 {
+    margin-bottom: 0.5rem;
+
+    // Swap the usual "## " markdown-style prefix for a plain bullet, so
+    // each post reads as an item in a list rather than a page heading.
+    // Colored to match the title link right after it, not the generic
+    // heading prefix color.
+    &:before {
+      content: '• ';
+      color: var(--orange-color);
+    }
+  }
+
+  .excerpt {
+    margin: 1rem 0;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    // A post's excerpt can start with its first in-content heading (e.g.
+    // "## Introduction"). Demote it to plain text so it doesn't duplicate
+    // the list item's own <h2> title right above it.
+    h1, h2, h3, h4 {
+      font-size: 1rem;
+      color: var(--fg-color);
+      margin-bottom: 0.5rem;
+
+      &:before {
+        content: none;
+      }
+    }
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    .tags {
+      margin-top: 0;
+    }
+  }
+
+  .read-more {
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
 }
 
 // Search page
@@ -426,7 +545,7 @@ ul.blog {
   }
 }
 
-footer {
+.site-footer {
   text-align: center;
   padding: 2rem 1.5rem;
   font-size: 0.85rem;
