@@ -8,9 +8,9 @@
   -warn-error
   +a
   -open
-  Volgo
+  Central_stdlib
   -open
-  Central_stdlib)
+  Volgo)
  (libraries central_stdlib volgo)
  (instrumentation
   (backend bisect_ppx))

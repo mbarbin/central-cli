@@ -46,7 +46,7 @@
   (pp
    (>= 2.0.0))
   (pplumbing-err
-   (>= 0.0.16))
+   (>= 0.0.17))
   (pplumbing-log
    (>= 0.0.17))
   (pplumbing-log-cli
@@ -83,7 +83,7 @@
   (mdexp
    (>= 0.0.20260814))
   (pplumbing-err
-   (>= 0.0.16))
+   (>= 0.0.17))
   (ppx_expect
    (>= v0.17))
   (volgo

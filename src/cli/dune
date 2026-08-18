@@ -8,7 +8,7 @@
   -warn-error
   +a
   -open
-  Central_stdlib
+  Pplumbing_pp_tty
   -open
   Pplumbing_err
   -open
@@ -16,7 +16,7 @@
   -open
   Pplumbing_log_cli
   -open
-  Pplumbing_pp_tty
+  Central_stdlib
   -open
   Volgo
   -open

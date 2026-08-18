@@ -8,9 +8,9 @@
   -warn-error
   +a
   -open
-  Central_stdlib
-  -open
   Pplumbing_err
+  -open
+  Central_stdlib
   -open
   Volgo)
  (libraries central_stdlib fpath loc pp pplumbing-err volgo xdg yojson)

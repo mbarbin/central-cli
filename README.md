@@ -1,5 +1,8 @@
 # central-cli
 
+[![CI Status](https://github.com/mbarbin/central-cli/workflows/ci/badge.svg)](https://github.com/mbarbin/central-cli/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/mbarbin/central-cli/badge.svg?branch=main)](https://coveralls.io/github/mbarbin/central-cli?branch=main)
+
 A tool to help manage changes and git history between individual sub-repos
 and a monorepo that aggregates them.
 
