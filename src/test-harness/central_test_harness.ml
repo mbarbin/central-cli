@@ -40,25 +40,38 @@ let find_shas text =
   List.rev !results
 ;;
 
-let replace_all text ~pattern ~with_ =
-  let plen = String.length pattern in
+(* [text] is scanned once, left to right, trying every [pattern] (longest
+   first, per [patterns]) at the current position. Doing this as a single
+   pass over the *original* [text] - rather than a fold that runs each
+   pattern over the progressively-rewritten accumulator - matters: a mock
+   rev is just a 40-character hex string, indistinguishable from a real one,
+   so it can itself contain a 4-character run that matches some other,
+   unrelated real rev's abbreviated prefix. Re-scanning already-substituted
+   output for later patterns would occasionally let that coincidence
+   corrupt a mock rev that had already been written out correctly. *)
+let replace_all text ~patterns =
   let tlen = String.length text in
-  if plen = 0 || plen > tlen
-  then text
-  else (
-    let buf = Buffer.create tlen in
-    let i = ref 0 in
-    while !i <= tlen - plen do
-      if String.equal (String.sub text ~pos:!i ~len:plen) pattern
-      then (
-        Buffer.add_string buf with_;
-        i := !i + plen)
-      else (
-        Buffer.add_char buf text.[!i];
-        incr i)
-    done;
-    if !i < tlen then Buffer.add_string buf (String.sub text ~pos:!i ~len:(tlen - !i));
-    Buffer.contents buf)
+  let buf = Buffer.create tlen in
+  let i = ref 0 in
+  while !i < tlen do
+    match
+      List.find_map patterns ~f:(fun (pattern, with_) ->
+        let plen = String.length pattern in
+        if
+          plen > 0
+          && !i + plen <= tlen
+          && String.equal (String.sub text ~pos:!i ~len:plen) pattern
+        then Some (plen, with_)
+        else None)
+    with
+    | Some (plen, with_) ->
+      Buffer.add_string buf with_;
+      i := !i + plen
+    | None ->
+      Buffer.add_char buf text.[!i];
+      incr i
+  done;
+  Buffer.contents buf
 ;;
 
 let repo_root_placeholder = "$CENTRAL_ROOT"
@@ -135,10 +148,7 @@ let replacements t text =
   sorted_by_length_desc (t.repo_root :: rev_replacements)
 ;;
 
-let redact t text =
-  List.fold_left (replacements t text) ~init:text ~f:(fun acc (pattern, with_) ->
-    replace_all acc ~pattern ~with_)
-;;
+let redact t text = replace_all text ~patterns:(replacements t text)
 
 (* Keep the first group attached to the program name when it doesn't start
    with a flag (so e.g. [$ central export foo] reads on one line rather than
