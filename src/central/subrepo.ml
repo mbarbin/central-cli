@@ -39,3 +39,27 @@ let all ~repo_root =
     |> List.sort ~cmp:String.compare
     |> List.map ~f:v
 ;;
+
+let find_on_disk ~repo_root ~name =
+  List.find_opt (all ~repo_root) ~f:(fun t -> String.equal (to_string t) name)
+;;
+
+let central_path t ~subrepo_path =
+  Vcs.Path_in_repo.v
+    (Printf.sprintf
+       "%s/%s"
+       (Vcs.Path_in_repo.to_string (root t))
+       (Vcs.Path_in_repo.to_string subrepo_path))
+;;
+
+let subrepo_path t ~central_path =
+  let prefix = Vcs.Path_in_repo.to_string (root t) ^ "/" in
+  let central_path = Vcs.Path_in_repo.to_string central_path in
+  if
+    String.is_prefix central_path ~prefix
+    && String.length central_path > String.length prefix
+  then (
+    let len = String.length central_path - String.length prefix in
+    Some (Vcs.Path_in_repo.v (String.sub central_path ~pos:(String.length prefix) ~len)))
+  else None
+;;
