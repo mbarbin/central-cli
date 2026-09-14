@@ -11,7 +11,7 @@
   Central_stdlib
   -open
   Volgo)
- (libraries central_stdlib pp unix volgo)
+ (libraries central_stdlib unix volgo)
  (instrumentation
   (backend bisect_ppx))
  (lint

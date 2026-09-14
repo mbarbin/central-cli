@@ -8,12 +8,10 @@
   -warn-error
   +a
   -open
-  Pplumbing_err
-  -open
   Central_stdlib
   -open
   Volgo)
- (libraries central_stdlib fpath pp pplumbing-err volgo xdg yojson)
+ (libraries central_stdlib fpath volgo xdg yojson)
  (instrumentation
   (backend bisect_ppx))
  (lint

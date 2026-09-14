@@ -10,22 +10,12 @@
   -open
   Pplumbing_pp_tty
   -open
-  Pplumbing_err
-  -open
   Central_stdlib
   -open
   Volgo
   -open
   Central)
- (libraries
-  central
-  central_stdlib
-  gitrepo_file
-  pp
-  pplumbing-err
-  pplumbing-pp-tty
-  unix
-  volgo)
+ (libraries central central_stdlib gitrepo_file pplumbing-pp-tty unix volgo)
  (instrumentation
   (backend bisect_ppx))
  (lint

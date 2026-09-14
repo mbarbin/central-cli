@@ -9,8 +9,6 @@
   -warn-error
   +a
   -open
-  Pplumbing_err
-  -open
   Central_stdlib
   -open
   Volgo
@@ -23,7 +21,6 @@
   fpath
   gitrepo_file
   gitrepo_file_parser
-  pplumbing-err
   volgo)
  (instrumentation
   (backend bisect_ppx))

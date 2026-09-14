@@ -10,8 +10,6 @@
   -warn-error
   +a
   -open
-  Pplumbing_err
-  -open
   Central_stdlib
   -open
   Volgo
@@ -22,7 +20,6 @@
   central_stdlib
   central_test_harness
   central_test_helpers
-  pplumbing-err
   volgo
   volgo-git-unix)
  (instrumentation

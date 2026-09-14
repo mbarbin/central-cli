@@ -10,8 +10,6 @@
   -open
   Pplumbing_pp_tty
   -open
-  Pplumbing_err
-  -open
   Pplumbing_log
   -open
   Pplumbing_log_cli
@@ -34,8 +32,6 @@
   fpath
   gitrepo_file
   gitrepo_file_parser
-  pp
-  pplumbing-err
   pplumbing-log
   pplumbing-log-cli
   pplumbing-pp-tty

@@ -10,10 +10,12 @@
 
 module Absolute_path = Absolute_path0
 module Dyn = Dyn0
+module Err = Err0
 module Json = Json0
 module List = List0
 module Loc = Loc0
 module Myers = Myers0
+module Pp = Pp0
 module Ref = Ref0
 module String = String0
 module String_id = String_id0
