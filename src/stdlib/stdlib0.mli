@@ -16,6 +16,7 @@ module List = List0
 module Loc = Loc0
 module Myers = Myers0
 module Pp = Pp0
+module Pp_tty = Pp_tty0
 module Ref = Ref0
 module String = String0
 module String_id = String_id0

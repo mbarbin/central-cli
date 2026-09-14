@@ -8,8 +8,6 @@
   -warn-error
   +a
   -open
-  Pplumbing_pp_tty
-  -open
   Pplumbing_log
   -open
   Pplumbing_log_cli
@@ -34,7 +32,6 @@
   gitrepo_file_parser
   pplumbing-log
   pplumbing-log-cli
-  pplumbing-pp-tty
   print-table
   spawn
   unix

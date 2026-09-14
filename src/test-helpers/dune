@@ -8,14 +8,12 @@
   -warn-error
   +a
   -open
-  Pplumbing_pp_tty
-  -open
   Central_stdlib
   -open
   Volgo
   -open
   Central)
- (libraries central central_stdlib gitrepo_file pplumbing-pp-tty unix volgo)
+ (libraries central central_stdlib gitrepo_file unix volgo)
  (instrumentation
   (backend bisect_ppx))
  (lint

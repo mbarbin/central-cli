@@ -2,7 +2,15 @@
  (name central_stdlib)
  (public_name central.stdlib)
  (flags :standard -w +a-4-40-41-42-44-45-48-66 -warn-error +a)
- (libraries central_myers dyn fpath-sexp0 loc pp pplumbing-err yojson)
+ (libraries
+  central_myers
+  dyn
+  fpath-sexp0
+  loc
+  pp
+  pplumbing-err
+  pplumbing-pp-tty
+  yojson)
  (instrumentation
   (backend bisect_ppx))
  (lint
