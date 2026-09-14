@@ -13,7 +13,7 @@
   Central_stdlib
   -open
   Volgo)
- (libraries central_stdlib fpath loc pp pplumbing-err volgo xdg yojson)
+ (libraries central_stdlib fpath pp pplumbing-err volgo xdg yojson)
  (instrumentation
   (backend bisect_ppx))
  (lint
