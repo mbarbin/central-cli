@@ -18,7 +18,6 @@
   central_parsing_utils
   central_stdlib
   file-rewriter
-  fpath
   gitrepo_file
   gitrepo_file_parser
   volgo)

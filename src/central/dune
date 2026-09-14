@@ -11,7 +11,7 @@
   Central_stdlib
   -open
   Volgo)
- (libraries central_stdlib fpath volgo xdg yojson)
+ (libraries central_stdlib volgo xdg yojson)
  (instrumentation
   (backend bisect_ppx))
  (lint

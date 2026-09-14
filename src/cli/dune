@@ -27,7 +27,6 @@
   central_stdlib
   cmdlang
   file-rewriter
-  fpath
   gitrepo_file
   gitrepo_file_parser
   pplumbing-log

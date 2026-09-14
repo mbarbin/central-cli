@@ -11,6 +11,7 @@
 module Absolute_path = Absolute_path0
 module Dyn = Dyn0
 module Err = Err0
+module Fpath = Fpath0
 module Json = Json0
 module List = List0
 module Loc = Loc0
