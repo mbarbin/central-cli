@@ -25,7 +25,6 @@ depends: [
   "pplumbing-log-cli" {>= "0.0.17"}
   "pplumbing-pp-tty" {>= "0.0.17"}
   "print-table" {>= "0.1.3"}
-  "sexplib0" {>= "v0.17"}
   "spawn" {>= "v0.17"}
   "volgo" {>= "0.0.22"}
   "volgo-git-unix" {>= "0.0.22"}

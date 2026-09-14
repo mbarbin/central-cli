@@ -55,8 +55,6 @@
    (>= 0.0.17))
   (print-table
    (>= 0.1.3))
-  (sexplib0
-   (>= v0.17))
   (spawn
    (>= v0.17))
   (volgo

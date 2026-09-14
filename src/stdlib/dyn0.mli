@@ -14,10 +14,3 @@ end
     that we've found convenient while working with this abstraction. *)
 
 val inline_record : string -> (string * Dyn.t) list -> Dyn.t
-
-(** {1 Alternate syntax}
-
-    Produces a sexp representation of a dyn value, focused on readability
-    for debugging, error messages and expect tests - not a round-trip
-    serialization framework. *)
-val to_sexp : Dyn.t -> Sexplib0.Sexp.t
