@@ -34,7 +34,7 @@ A copy of the license file for parsing-utils is located under
 ## Gazagnaire ocaml-merge3 (Myers diff)
 
 The Myers shortest-edit-script computation in `src/merge3/merge3.ml` is
-vendored from [ocaml-merge3](https://tangled.sh/@gazagnaire.org/monopampam)
+vendored from [ocaml-merge3](https://tangled.org/gazagnaire.org/ocaml-merge3)
 by Thomas Gazagnaire (released under `ISC`). Only the pure diff computation
 is vendored; the parts unused by this project are not included. The exact
 provenance and list of changes are documented at the top of

@@ -1,0 +1,5 @@
+(*_******************************************************************************)
+(*_  central-myers - Unified-diff renderer built on a vendored Myers algorithm  *)
+(*_  SPDX-FileCopyrightText: 2026 Mathieu Barbin <mathieu.barbin@gmail.com>     *)
+(*_  SPDX-License-Identifier: ISC                                               *)
+(*_******************************************************************************)
